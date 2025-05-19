@@ -7,6 +7,7 @@ This project is an interactive game designed to help children with the autism sp
 The game supports emotional learning by showing children images of faces expressing different emotions and asking them to select the correct label. The game exists in two versions:
 - **Automatic Difficulty**: The game adjusts the difficulty level in real-time based on the child’s performance.
 - **Manual Difficulty**: A fixed difficulty level is used.
+This repository presents you with the automatic version.
 
 ## How to Run the Game
 
