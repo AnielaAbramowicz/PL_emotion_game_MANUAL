@@ -49,8 +49,8 @@ if __name__ == "__main__":
         f.write(f"Age: {age}\nGender: {gender}\n")
 
     # print(tkFont.families())
-    image_path = os.path.join(VISUALIZATION_FOLDER, 'buttom_red.png')
-    buttom_red = Image.open(image_path).resize((200, 80))
+    buttom_red_image_path = os.path.join(VISUALIZATION_FOLDER, 'buttom_red.png')
+    buttom_red = Image.open(buttom_red_image_path).resize((200, 80))
     buttom_red = ImageTk.PhotoImage(buttom_red)
 
     root.withdraw()
