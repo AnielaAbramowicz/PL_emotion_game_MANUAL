@@ -1,0 +1,11 @@
+pygame
+numpy
+pandas
+opencv-python
+matplotlib
+deepface
+face-alignment
+py-feat
+torch
+scikit-learn
+tqdm
