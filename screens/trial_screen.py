@@ -38,6 +38,9 @@ class TrialScreen:
         self.correct_answer = "Radość"
         self.image_path = os.path.join(base_path, "visualization", "trail_image.jpg")
 
+        button_red_raw = Image.open(os.path.join(base_path, "visualization", "buttom_red.png")).resize((200, 60))
+
+        
         self.score_count = tk.Label(
             self.main_frame,
             image=self.button_yellow,
@@ -48,7 +51,7 @@ class TrialScreen:
             compound="center"
         )
 
-        button_red_raw = Image.open(os.path.join(base_path, "visualization", "buttom_red.png")).resize((200, 60))
+
         button_red = ImageTk.PhotoImage(button_red_raw)
         end_button = tk.Label(
             self.main_frame,
@@ -129,10 +132,10 @@ class TrialScreen:
             btn = tk.Label(
                 btn_frame,
                 text=level.upper(),
-                font=("Monocraft", 17, "bold"),
+                font=("Monocraft", 12, "bold"),
                 bg=bg_color,
                 fg=text_color,
-                padx=10,
+                padx=5,
                 pady=5
             )
             btn.pack()
