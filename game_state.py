@@ -16,8 +16,8 @@ class GameState:
 
         base_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
 
-        self.csv_path = os.path.join(base_path, "dataset CK", "ck_emotion_difficulty.csv")
-        self.dataset_folder = os.path.join(base_path, "dataset CK", "ck_images")
+        self.csv_path = os.path.join(base_path, "dataset_CK", "ck_emotion_difficulty.csv")
+        self.dataset_folder = os.path.join(base_path, "dataset_CK", "ck_images")
         self.df = pd.read_csv(self.csv_path)
 
 
