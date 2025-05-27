@@ -1,6 +1,6 @@
 # PL_emotion_game_MANUAL
 
-# PL
+# Polski/ Polish
 
 To adaptacyjna gra do rozpoznawania emocji na podstawie mimiki twarzy, zaprojektowana w celu wspierania rozumienia emocji u dzieci.
 
@@ -13,7 +13,7 @@ To adaptacyjna gra do rozpoznawania emocji na podstawie mimiki twarzy, zaprojekt
 3. Uruchom grę:
     python PL_emotion_game_MANUAL/main.py
 
-# ENG
+# Angielski/ English 
 
 
 This is an adaptive facial emotion recognition game designed to support emotion understanding in children.
