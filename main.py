@@ -43,24 +43,12 @@ if __name__ == "__main__":
     with open(os.path.join(session_folder, "user_info.txt"), "w") as f:
         f.write(f"Age: {age}\nGender: {gender}\n")
     
-
-
-    #
-
-
         base_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
 
         buttom_red_raw = Image.open(os.path.join(base_path, "visualization", "buttom_red.png")).resize((200, 80))
         buttom_red = ImageTk.PhotoImage(buttom_red_raw)
 
     root.withdraw()
-    # num_questions = simpledialog.askinteger(
-    #     "Game Setup",
-    #     "How many questions do you want to answer?",
-    #     initialvalue=2,
-    #     minvalue=1,
-    #     maxvalue=100
-    # )
     num_questions = 10
 
     if num_questions is None:
@@ -88,15 +76,12 @@ if __name__ == "__main__":
     end_button.place(relx=1.0,x=-10, y=10,anchor="ne")
 
 
-
-
     #clear txt files
     log_files = ["feeling_answers.txt", "reason_answers.txt", "score.txt", "difficulty.txt", "emotion_probabilities.txt"]
     for filename in log_files:
         full_path = os.path.join(session_folder, filename)
         with open(full_path, "w") as f:
             f.write("")
-
 
 
     game_state.max_rounds = num_questions
