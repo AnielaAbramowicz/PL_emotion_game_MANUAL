@@ -30,12 +30,10 @@ class EmotionQuestionScreen:
         "surprise": "Zaskoczenie"
         }
 
-
         self.gs = game_state
         self.emotions = ["Złość", "Wstręt", "Strach", "Radość", "Smutek", "Zaskoczenie"]
         self.time_beg = None
 
-        # Działa zarówno lokalnie, jak i po spakowaniu przez PyInstaller
         base_path = getattr(sys, '_MEIPASS', os.path.abspath("."))
 
         button_blue_raw = Image.open(os.path.join(base_path, "visualization", "buttom_blue.png")).resize((300, 70))
@@ -94,17 +92,6 @@ class EmotionQuestionScreen:
         #self.image_label.pack(side=tk.LEFT, padx=(0, 20))
         self.image_label.pack(padx=4,pady=4)
 
-        # round_label = tk.Label(
-        #     self.main_frame,
-        #     text=f"Round {self.gs.round + 1} / {self.gs.num_questions}",
-        #     font=("Pixel Operator 8", 30, "bold"),
-        #     fg=text_color,
-        #     bg=bg_color,
-
-        # )
-        # round_label.place(x=10, y=10)
-
-
         flower_label = tk.Label(self.main_frame, image=self.flower_left, bg=bg_color)
         flower_label.image = self.flower_left
         flower_label.place(x=30, rely=0.5, anchor="w")  
@@ -114,10 +101,8 @@ class EmotionQuestionScreen:
         flower_label2.place(x=screen_width-30-200, rely=0.5, anchor="w") 
 
 
-
         for widget in self.root.place_slaves():
             widget.lift()
-
 
         self.button_frame.pack(pady=20)
         # Split buttons into two rows
@@ -188,41 +173,32 @@ class EmotionQuestionScreen:
             emotion = "Smutek"
         elif emotion == "surprise":
             emotion = "Zaskoczenie"
-
-
         return emotion
         
-
-
 
     def set_difficulty(self, level):
         self.gs.set_difficulty(level)
         self.selected_difficulty = level
 
-        # Update frame backgrounds to reflect selection
+        #update frame backgrounds to reflect selection
         for lvl, frame in self.difficulty_buttons.items():
             frame.config(bg=frame_color if lvl == level else bg_color)
 
-        # Load and show new image
+        # load and show new image
         row = self.gs.select_next_image()
 
         self.update_image(row)
 
 
-
-
-
-
-
     def update_image(self, row):
-        # Load the image
+        #Load the image
         image_path = os.path.join(self.gs.dataset_folder, row["filename"])
 
         image_height = int(self.root.winfo_screenheight() * 0.4)
         img = Image.open(image_path).resize((self.image_width, image_height))
         photo = ImageTk.PhotoImage(img)
 
-        # Update image label
+        #Update image label
         self.image_label.configure(image=photo)
         self.image_label.image = photo  # Keep reference
 
@@ -260,25 +236,19 @@ class EmotionQuestionScreen:
         bg_color = success_color if correctness == 1 else error_color
 
 
-
-
         # Container to center the feedback box
         container = tk.Frame(self.main_frame, bg=self.main_frame["bg"])
         container.pack(pady=10)
 
-        # Box that mimics image width and has padding
+        # box that mimics image width and has padding
         self.feedback_frame = tk.Frame(container,width=self.image_width, padx=40, pady=20, bd=10, relief=tk.GROOVE, bg=bg_color)
 
-        # self.feedback_frame = tk.Label(container,
-        #                                bg= bg_color, width=400, height=150, compound="center")
-        # self.feedback_frame.image = self.message_red
         self.feedback_frame.pack()
         translated = self.label_translation.get(correct_answer.lower(), correct_answer)
         msg = (
             "Twoja odpowiedź jest poprawna!\nGratulacje! Spróbujmy kolejnej!"
             if is_correct else
             f"Twoja odpowiedź jest niepoprawna.\nDasz radę!\nPoprawna odpowiedź to: {translated}"
-
         )
         label = tk.Label(
             self.feedback_frame,
@@ -303,17 +273,12 @@ class EmotionQuestionScreen:
         btn.bind("<ButtonRelease-1>", lambda e: self. proceed_after_feedback())
         btn.pack(pady=5)
 
-
     def proceed_after_feedback(self):
         self.feedback_frame.destroy()
         self.clear()
-
-
         # Log difficulty for each round
         with open(os.path.join(self.gs.session_folder, "selected_difficulty.txt"), "a") as f:
             f.write(f"Round {self.gs.round } - Final selected difficulty: {self.gs.difficulty}\n")
-
-
 
         from screens.feeling_feedback import FeelingFeedbackScreen
         FeelingFeedbackScreen(self.root, self.gs).render()
